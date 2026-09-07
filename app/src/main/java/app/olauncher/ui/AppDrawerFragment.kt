@@ -93,6 +93,10 @@ class AppDrawerFragment : BaseFragment() {
     }
 
     private fun initSearch() {
+        // The keyboard only appears when the user taps the search field (not on drawer open).
+        binding.search.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if (hasFocus) binding.search.showKeyboard()
+        }
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query?.startsWith("!") == true)

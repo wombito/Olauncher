@@ -117,6 +117,9 @@ class Prefs(context: Context) {
     private val IS_SHORTCUT_SWIPE_LEFT = "IS_SHORTCUT_SWIPE_LEFT"
     private val SHORTCUT_ID_SWIPE_RIGHT = "SHORTCUT_ID_SWIPE_RIGHT"
     private val IS_SHORTCUT_SWIPE_RIGHT = "IS_SHORTCUT_SWIPE_RIGHT"
+    private val HOME_WIDGETS = "HOME_WIDGETS"
+    private val WIDGET_HEIGHTS = "WIDGET_HEIGHTS"
+    private val OBSIDIAN_NOTE_URI = "OBSIDIAN_NOTE_URI"
 
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
 
@@ -145,7 +148,7 @@ class Prefs(context: Context) {
         set(value) = prefs.edit { putBoolean(LOCK_MODE, value).apply() }
 
     var autoShowKeyboard: Boolean
-        get() = prefs.getBoolean(AUTO_SHOW_KEYBOARD, true)
+        get() = prefs.getBoolean(AUTO_SHOW_KEYBOARD, false)
         set(value) = prefs.edit { putBoolean(AUTO_SHOW_KEYBOARD, value).apply() }
 
     var keyboardMessageShown: Boolean
@@ -232,6 +235,22 @@ class Prefs(context: Context) {
     var hiddenAppsUpdated: Boolean
         get() = prefs.getBoolean(HIDDEN_APPS_UPDATED, false)
         set(value) = prefs.edit { putBoolean(HIDDEN_APPS_UPDATED, value).apply() }
+
+    var homeWidgets: List<WidgetType>
+        get() {
+            val stored = prefs.getString(HOME_WIDGETS, null) ?: return WidgetType.DEFAULT_ORDER
+            return WidgetType.decode(stored)
+        }
+        set(value) = prefs.edit { putString(HOME_WIDGETS, WidgetType.encode(value)).apply() }
+
+    var obsidianNoteUri: String
+        get() = prefs.getString(OBSIDIAN_NOTE_URI, "").orEmpty()
+        set(value) = prefs.edit { putString(OBSIDIAN_NOTE_URI, value).apply() }
+
+    // Custom pixel height per widget; absent means wrap-content.
+    var widgetHeights: Map<WidgetType, Int>
+        get() = WidgetType.decodeHeights(prefs.getString(WIDGET_HEIGHTS, "").orEmpty())
+        set(value) = prefs.edit { putString(WIDGET_HEIGHTS, WidgetType.encodeHeights(value)).apply() }
 
     var toShowHintCounter: Int
         get() = prefs.getInt(SHOW_HINT_COUNTER, 1)
