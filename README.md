@@ -1,44 +1,49 @@
-![Olauncher](https://repository-images.githubusercontent.com/278638069/db0acb80-661b-11eb-803e-926cae5dccb4)
-
-
 # Olauncher | Minimal AF Launcher
+
 AF stands for Ad-Free! :D
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-    alt="Get it on F-Droid"
-    height="80">](https://f-droid.org/packages/app.olauncher)
-[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-    alt="Get it on Play Store"
-    height="80">](https://play.google.com/store/apps/details?id=app.olauncher)
+A minimal Android launcher: no icons, no ads, no distractions. Your apps as
+text, a handful of gestures, and an optional daily wallpaper.
 
-### Install using [F-Droid](https://f-droid.org/packages/app.olauncher), [Play Store](https://play.google.com/store/apps/details?id=app.olauncher) or the [latest APK](https://github.com/tanujnotes/Olauncher/releases/).
+> Fork of [Olauncher](https://github.com/tanujnotes/Olauncher), licensed under
+> GPLv3. Files in this repository have been modified from the original; the main
+> addition is the widgets screen described below.
 
-- To maintain the simplicity of the launcher, a few niche features are available but hidden.
+## Widgets
 
-- Please check out the **[About](https://tanujnotes.substack.com/p/olauncher-minimal-af-launcher?utm_source=github)** page in the Olauncher settings for a complete list of features and **FAQs**.
+Swipe right on the home screen to open a customizable widgets page:
 
-##
+- **Calendar** — month view with your calendar events marked
+- **Events** — upcoming events from your device calendars (asks for calendar permission)
+- **Year progress** — a dot grid showing how much of the year has elapsed
+- **Obsidian note** — renders a Markdown note you pick; tap to open it in Obsidian
 
-License: [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html)
+Tap **Edit** to add, remove, reorder or resize widgets. The layout is saved on device.
 
-Contact: [X/Twitter](https://x.com/tanujnotes) • [Reddit](https://reddit.com/user/tanujnotes/) • [Bluesky](https://bsky.app/profile/tanujnotes.bsky.social)
+## Gestures
 
-##
+- Double tap to lock the screen
+- Swipe left to open an app, swipe right for the widgets screen
+- Swipe down for notifications (or search)
 
-### My other apps:
+## Privacy
 
-- [Pro Launcher](https://play.google.com/store/apps/details?id=app.prolauncher) - Pro version of Olauncher with extra features like widgets, weather, folders, etc.
+No accounts, no analytics, no tracking. Full details in [PRIVACY.md](PRIVACY.md).
 
-- [Note to Self](https://play.google.com/store/apps/details?id=com.makenotetoself) - Free and [open source](https://github.com/jeerovan/ntsapp) notes app with chat like interface and end-to-end encryption.
+- The Calendar and Events widgets read your device calendar locally; nothing leaves the device.
+- The Obsidian widget reads only the single file you choose.
+- The optional daily wallpaper downloads an image from the internet, only while enabled.
 
-- [Pentastic](https://play.google.com/store/apps/details?id=app.pentastic) - Minimal todo lists. Free and [open source](https://github.com/tanujnotes/Pentastic).
+## Build
 
-##
+Standard Android project:
 
-### Help me get a new phone for testing:
+```
+./gradlew assembleDebug
+```
 
-[<img src="https://img.buymeacoffee.com/button-api/?emoji=&slug=tanujnotes&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
-    alt="Get it on Play Store"
-    height="80">](https://www.buymeacoffee.com/tanujnotes)
+Requires the Android SDK; set `sdk.dir` in `local.properties`.
 
-Thank you!
+## License
+
+[GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html), same as the original project.
