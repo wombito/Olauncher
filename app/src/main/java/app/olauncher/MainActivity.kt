@@ -8,12 +8,14 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -54,6 +56,10 @@ class MainActivity : AppCompatActivity() {
     private var timerJob: Job? = null
     private var isResumed = false
     private var profileReceiver: BroadcastReceiver? = null
+
+    private val widgetNotePicker = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri -> onWidgetNotePicked(uri) }
 
 //    override fun onBackPressed() {
 //        if (navController.currentDestination?.id != R.id.mainFragment)
@@ -133,6 +139,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         isResumed = true
         viewModel.isPrivateSpaceToggling = false
+        viewModel.isPickingWidgetNote = false
     }
 
     override fun onStop() {
@@ -327,10 +334,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun backToHomeScreen() {
-        if (viewModel.isPrivateSpaceToggling) return
+        if (viewModel.isPrivateSpaceToggling || viewModel.isPickingWidgetNote) return
         binding.messageLayout.visibility = View.GONE
         if (navController.currentDestination?.id != R.id.mainFragment)
             navController.popBackStack(R.id.mainFragment, false)
+    }
+
+    // Launched from WidgetsFragment. Handled here because opening the system file picker
+    // stops MainActivity, which would otherwise pop the widgets screen off the back stack
+    // (see backToHomeScreen) and lose the fragment waiting for the result.
+    fun pickWidgetNote() {
+        viewModel.isPickingWidgetNote = true
+        widgetNotePicker.launch(arrayOf("*/*"))
+    }
+
+    private fun onWidgetNotePicked(uri: Uri?) {
+        if (uri == null) return
+        runCatching {
+            contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        prefs.obsidianNoteUri = uri.toString()
     }
 
     private fun setPlainWallpaper() {

@@ -6,6 +6,7 @@ import android.app.WallpaperManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.ContentUris
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.LauncherApps
@@ -503,11 +504,12 @@ fun openAlarmApp(context: Context) {
     }
 }
 
-fun openCalendar(context: Context) {
+fun openCalendar(context: Context, atMillis: Long? = null) {
     try {
         val calendarUri = CalendarContract.CONTENT_URI
             .buildUpon()
             .appendPath("time")
+            .apply { if (atMillis != null) appendPath(atMillis.toString()) }
             .build()
         context.startActivity(Intent(Intent.ACTION_VIEW, calendarUri))
     } catch (e: Exception) {
@@ -518,6 +520,17 @@ fun openCalendar(context: Context) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+}
+
+fun openCalendarEvent(context: Context, eventId: Long, beginMillis: Long) {
+    try {
+        val eventUri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventId)
+        val intent = Intent(Intent.ACTION_VIEW, eventUri)
+            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginMillis)
+        context.startActivity(intent)
+    } catch (e: Exception) {
+        openCalendar(context, beginMillis)
     }
 }
 

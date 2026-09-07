@@ -15,6 +15,9 @@
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
+    <!--Used only for the calendar and events widgets-->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+
     <!--Used for Private Space support on Android 15+-->
     <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES" />
 

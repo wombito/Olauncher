@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widgetsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.WidgetsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/widgetList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="48dp"
+        android:paddingBottom="96dp"
+        tools:listitem="@layout/item_widget_card" />
+
+    <TextView
+        android:id="@+id/widgetEmptyHint"
+        style="@style/TextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="48dp"
+        android:gravity="center"
+        android:text="@string/no_widgets"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/widgetTrash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="28dp"
+        android:alpha="0"
+        android:background="@drawable/rounded_widget_card"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/remove_widget"
+            android:src="@drawable/ic_delete" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/widgetAddButton"
+        style="@style/TextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_widget_card"
+        android:drawablePadding="6dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="10dp"
+        android:text="@string/add_widget"
+        app:drawableStartCompat="@drawable/ic_add"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+</FrameLayout>

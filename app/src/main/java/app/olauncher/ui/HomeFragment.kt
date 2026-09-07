@@ -655,7 +655,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
             override fun onSwipeRight() {
                 super.onSwipeRight()
-                openSwipeRightApp()
+                findNavController().navigate(R.id.action_mainFragment_to_widgetsFragment)
             }
 
             override fun onSwipeUp() {
@@ -703,7 +703,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
             override fun onSwipeRight() {
                 super.onSwipeRight()
-                openSwipeRightApp()
+                findNavController().navigate(R.id.action_mainFragment_to_widgetsFragment)
             }
 
             override fun onSwipeUp() {

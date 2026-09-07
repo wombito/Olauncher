@@ -64,4 +64,9 @@ dependencies {
     //Material dependency
     implementation libs.material
 
+    // Markdown rendering (Obsidian note widget)
+    implementation libs.markwon.core
+    implementation libs.markwon.ext.tasklist
+
+    testImplementation libs.junit
 }

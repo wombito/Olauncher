@@ -2,9 +2,11 @@
 appcompat = "1.7.0"
 coreKtx = "1.16.0"
 gradle = "8.9.1"
+junit = "4.13.2"
 kotlinStdlib = "2.1.20"
 lifecycleExtensions = "2.2.0"
 lifecycleViewmodelKtx = "2.9.0"
+markwon = "4.6.2"
 material = "1.12.0"
 navigationFragmentKtx = "2.9.0"
 recyclerview = "1.4.0"
@@ -13,7 +15,10 @@ workRuntimeKtx = "2.10.1"
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinStdlib" }
+markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
+markwon-ext-tasklist = { module = "io.noties.markwon:ext-tasklist", version.ref = "markwon" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinStdlib" }
 lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
