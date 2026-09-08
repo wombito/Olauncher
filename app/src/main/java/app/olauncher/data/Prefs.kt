@@ -31,7 +31,6 @@ class Prefs(context: Context) {
     private val HIDDEN_APPS_UPDATED = "HIDDEN_APPS_UPDATED"
     private val SHOW_HINT_COUNTER = "SHOW_HINT_COUNTER"
     private val APP_THEME = "APP_THEME"
-    private val ABOUT_CLICKED = "ABOUT_CLICKED"
     private val WALLPAPER_MSG_SHOWN = "WALLPAPER_MSG_SHOWN"
     private val SWIPE_DOWN_ACTION = "SWIPE_DOWN_ACTION"
     private val TEXT_SIZE_SCALE = "TEXT_SIZE_SCALE"
@@ -248,10 +247,6 @@ class Prefs(context: Context) {
     var toShowHintCounter: Int
         get() = prefs.getInt(SHOW_HINT_COUNTER, 1)
         set(value) = prefs.edit { putInt(SHOW_HINT_COUNTER, value).apply() }
-
-    var aboutClicked: Boolean
-        get() = prefs.getBoolean(ABOUT_CLICKED, false)
-        set(value) = prefs.edit { putBoolean(ABOUT_CLICKED, value).apply() }
 
     var wallpaperMsgShown: Boolean
         get() = prefs.getBoolean(WALLPAPER_MSG_SHOWN, false)
