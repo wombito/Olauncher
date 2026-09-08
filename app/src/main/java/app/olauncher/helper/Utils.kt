@@ -625,7 +625,7 @@ fun View.animateAlpha(alpha: Float = 1.0f) {
 
 fun Context.shareApp() {
     val message = getString(R.string.are_you_using_your_phone_or_is_your_phone_using_you) +
-            "\n" + Constants.URL_OLAUNCHER_PLAY_STORE
+            "\n" + Constants.URL_REPO
     val sendIntent: Intent = Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(Intent.EXTRA_TEXT, message)
@@ -634,17 +634,6 @@ fun Context.shareApp() {
 
     val shareIntent = Intent.createChooser(sendIntent, null)
     startActivity(shareIntent)
-}
-
-fun Context.rateApp() {
-    val intent = Intent(
-        Intent.ACTION_VIEW,
-        Constants.URL_OLAUNCHER_PLAY_STORE.toUri()
-    )
-    var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-    flags = flags or Intent.FLAG_ACTIVITY_NEW_DOCUMENT
-    intent.addFlags(flags)
-    startActivity(intent)
 }
 
 @RequiresApi(Build.VERSION_CODES.N_MR1)
