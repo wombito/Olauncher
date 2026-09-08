@@ -84,16 +84,6 @@
                     android:gravity="center"
                     android:text="@string/about_olauncher" />
 
-                <TextView
-                    android:id="@+id/moreFeatures"
-                    style="@style/TextSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/more_features" />
-
             </LinearLayout>
 
             <LinearLayout
